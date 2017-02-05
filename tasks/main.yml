@@ -1,0 +1,22 @@
+---
+- name: install fhem debian repo key
+  become: yes
+  apt_key: >
+    url="https://debian.fhem.de/archive.key"
+    state=present
+    id=0x65BDF9BACC0B9B66
+
+- name: install fhem debian repo
+  become: yes
+  apt_repository:
+    repo="deb https://debian.fhem.de stable"
+    state=present
+    filename="fhem"
+
+- name: install fhem from debian repo
+  become: yes
+  apt:
+    name="fhem"
+    state=present
+    cache_valid_time=3600
+    update_cache=yes
