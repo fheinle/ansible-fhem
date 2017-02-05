@@ -20,3 +20,17 @@
     state=present
     cache_valid_time=3600
     update_cache=yes
+
+- name: install libraries for fritzbox access
+  become: yes
+  apt:
+    name="{{ item }}"
+    state=present
+    cache_valid_time=3600
+    update_cache=yes
+  with_items:
+    - "libjson-perl"
+    - "libwww-perl"
+    - "libsoap-lite-perl"
+    - "libjson-xs-perl"
+    - "libnet-telnet-perl"
