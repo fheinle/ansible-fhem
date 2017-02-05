@@ -1,4 +1,12 @@
 ---
+- name: install https apt transport
+  become: yes
+  apt:
+    name="apt-transport-https"
+    state=present
+    cache_valid_time=3600
+    update_cache=yes
+
 - name: install fhem debian repo key
   become: yes
   apt_key: >
@@ -9,7 +17,7 @@
 - name: install fhem debian repo
   become: yes
   apt_repository:
-    repo="deb https://debian.fhem.de stable"
+    repo="deb https://debian.fhem.de/stable ./"
     state=present
     filename="fhem"
 
